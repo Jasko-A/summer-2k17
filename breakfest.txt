@@ -1,0 +1,23 @@
+Breakfest
+
+Meals
+French Toast $14.50
+Eggs & Bacon $16.55
+Scrambled Eggs $13.32
+Regular Eggs $10.79
+Boiled Eggs $12.45
+Croissant $8.66
+Scones $8.99
+Banana Bread $9.50
+Muffin $6.30
+Pound Bread $10.10
+Cereal $8.10
+
+Drinks
+Milk $3.99
+Orange Juice $4.45
+Apple Juice $3.00
+Cranberry Juice $4.00
+Coffee $3.30
+Machiato $4.50
+Cappucino $5.00
