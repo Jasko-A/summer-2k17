@@ -11,7 +11,7 @@ private:
 	string bMeal;
 	string lMeal;
 	string dMeal;
-	//std::string menusArray[3];
+	
 public:
 	
 	//Constructor

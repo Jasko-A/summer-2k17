@@ -1,7 +1,10 @@
 #include "Menu.h"
+#include "Binarysearch.h"
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -36,14 +39,50 @@ void Menu::readInMenu(string choice)
 
 void Menu::reader(string fileName)
 {
+	string name;
+	string line;
+	string segment;
+	string seglist [2];
+
+	float price;
+	char delimeter('$');
+	bool M = false;
+	bool D = false;
+	int i = 0;
+
 	ifstream infile;
 	infile.open(fileName);
-	string line;
+	
 
 	if (infile) {
 		while (!infile.eof()) {
-			getline(infile, line);
-			cout << line << endl;
+			getline(infile, line);	//read in a line
+			stringstream test(line);	//put line in string stream as "test"
+			while (getline(test, segment, '$'))	//segment the line
+			{
+				seglist[i] = segment; //put these segements into a vector
+				i++;
+			}
+			if (line == "Meals")
+				M = true;	//signal to make meals tree
+			if (line == "Drinks")
+				D = true;	//signal to make drinks tree
+			if (M && !D)
+			{
+				BST mTree;
+				mTree.insertNode(seglist[0], strtof((seglist[1]).c_str(), 0));	//the second parameter is casted to a float (this is for the price)
+				
+			}
+			else if (M && D)
+			{
+				BST dTree;
+				dTree.insertNode(seglist[0], strtof((seglist[1]).c_str(), 0));	//the second parameter is casted to a float (this is for the price)
+				
+			}
+			else
+				cout << "Error" << endl;
+
+			i = 0;
 
 		}
 	}
