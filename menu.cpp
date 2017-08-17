@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <vector>
 
 using namespace std;
 
@@ -79,8 +78,6 @@ void Menu::reader(string fileName)
 				dTree.insertNode(seglist[0], strtof((seglist[1]).c_str(), 0));	//the second parameter is casted to a float (this is for the price)
 				
 			}
-			else
-				cout << "Error" << endl;
 
 			i = 0;
 

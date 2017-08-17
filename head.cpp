@@ -1,16 +1,20 @@
+#include "Menu.h"
 #include <iostream>
 #include <string>
-#include "Menu.h"
+#include <vector>
+
 
 using namespace std;
 
 string prompter(string, bool*);
+void getOrder(vector<string> &);
 
 int main() {
 
 	bool test = false;
 	bool *b = &test;
 	
+	vector<string>order;
 	string mealType;
 	string choice;
 	string dismiss[2] = {"Exit" , "exit"};
@@ -31,7 +35,7 @@ int main() {
 	cout << "You chose: " << choice << endl;
 	cout << "Here is the menu\n";
 	mPtr->readInMenu(choice);
-	
+	getOrder(order);
 
 
 	return 0;
@@ -56,4 +60,18 @@ string prompter(string mealType, bool* b) {
 		cout << "try again" << endl;
 		return "try again";
 	}
+}
+
+void getOrder(vector<string> & order)
+{
+	string c = "";
+	cout << "\nWhat would you like to order? \tPRESS E to exit" << endl;
+	cin.ignore();
+	while (c != "E")
+	{
+		getline(cin, c);
+		//cout << c << endl;
+		order.push_back(c);
+	} 
+	
 }
