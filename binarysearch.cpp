@@ -41,3 +41,23 @@ void BST::insertNode(string name, float p)
 			parent->right = newNode;
 	}
 }
+
+float BST::getPrice(string name, Node * curr)
+{
+
+	if (curr->food == name)
+	{
+		return curr->price;
+	}
+	else if (name > curr->food)
+	{
+		curr = curr->right;
+		getPrice(name, curr);
+	}
+	else if (name < curr->food)
+	{
+		curr = curr->left;
+		getPrice(name, curr); 
+	}
+
+}

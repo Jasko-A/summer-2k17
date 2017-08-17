@@ -18,6 +18,7 @@ private:
 public:
 	BST();
 	void insertNode(string, float);
+	float getPrice(string, Node*);
 
 };
 
