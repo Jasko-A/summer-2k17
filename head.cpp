@@ -8,6 +8,7 @@ using namespace std;
 
 string prompter(string, bool*);
 void getOrder(vector<string> &);
+void correctOrder(vector<string> &);
 
 int main() {
 
@@ -64,6 +65,7 @@ string prompter(string mealType, bool* b) {
 
 void getOrder(vector<string> & order)
 {
+	char x = 'z';
 	string c = "";
 	cout << "\nWhat would you like to order? \tPRESS E to exit" << endl;
 	cin.ignore();
@@ -71,7 +73,58 @@ void getOrder(vector<string> & order)
 	{
 		getline(cin, c);
 		//cout << c << endl;
-		order.push_back(c);
+		if(c != "E")
+			order.push_back(c);
 	} 
+	cout << "Here is what you selected" << endl;
+	for (int i = 0; i < order.size(); i++)
+		cout << order[i] << endl;
+	cout << "Is this correct\tY for yes|N for no" << endl;
+	do {
+		cin >> x;
+		x = toupper(x);
+		switch (x) 
+		{
+			case 'Y':				//will make linked list to sa
+				break;
+			case 'N':
+				correctOrder(order);	//go to function that corrects order
+				break;
+		}
+	} while (x != 'E' && !(x == 'Y' || x == 'N'));
 	
+	
+}
+
+void correctOrder(vector<string> & order)
+{
+	string input = "";
+	vector<string>delItem;
+	vector<string>addItem;
+	cout << "What Items would you like to delete?\nPRESS E TO EXIT";
+	while (input != "E")
+	{
+		getline(cin, input);
+		if (input != "E")
+		{
+			delItem.push_back(input);
+		}
+	}
+	for (int i = 0; i < delItem.size(); i++)
+	{
+		for (int j = 0; j < order.size(); j++)
+		{
+			if (delItem[i] == order[j])
+			{
+				order[j].erase();
+			}
+		}
+	}
+	for (int i = 0; i < order.size(); i++)
+		cout << order[i] << endl;
+	order.shrink_to_fit();
+	cout << order.size() << endl;
+	cout << order.capacity() << endl;
+
+	cout << "What items would you like to add\nPRESS E TO EXIT";
 }
