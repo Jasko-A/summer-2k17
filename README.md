@@ -1,6 +1,6 @@
 # summer-2k17
 
-___ Complete FILE READ IN
+_X_ Complete FILE READ IN
 
 ___ Complete BST (all functions) 
 
