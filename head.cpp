@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Linkedlist.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,7 +9,7 @@ using namespace std;
 
 string prompter(string, bool*);
 void getOrder(vector<string> &);
-void correctOrder(vector<string> &);
+void correctOrder(vector<string> &, Link);
 
 int main() {
 
@@ -20,10 +21,13 @@ int main() {
 	string choice;
 	string dismiss[2] = {"Exit" , "exit"};
 	string fallMenu[3] = { "breakfest.txt", "hello", "bye" };
+	
 	Menu fall(fallMenu); //later insert an array of items
 	
 	Menu *mPtr;
 	mPtr = &fall;
+
+	Link orderL;
 
 	cout << "Welcome to Giovanni's Ristorante\n\nAre you ordering for breakfest, lunch, or dinner: ";
 	do {
@@ -65,6 +69,8 @@ string prompter(string mealType, bool* b) {
 
 void getOrder(vector<string> & order)
 {
+	Link orderL;
+	
 	char x = 'z';
 	string c = "";
 	cout << "\nWhat would you like to order? \tPRESS E to exit" << endl;
@@ -73,12 +79,14 @@ void getOrder(vector<string> & order)
 	{
 		getline(cin, c);
 		//cout << c << endl;
-		if(c != "E")
+		if (c != "E")
+			orderL.insert_back(c);
 			order.push_back(c);
 	} 
 	cout << "Here is what you selected" << endl;
-	for (int i = 0; i < order.size(); i++)
-		cout << order[i] << endl;
+	orderL.displayList();
+	//for (int i = 0; i < order.size(); i++)
+		//cout << order[i] << endl;
 	cout << "Is this correct\tY for yes|N for no" << endl;
 	do {
 		cin >> x;
@@ -88,7 +96,7 @@ void getOrder(vector<string> & order)
 			case 'Y':				//will make linked list to sa
 				break;
 			case 'N':
-				correctOrder(order);	//go to function that corrects order
+				correctOrder(order, orderL);	//go to function that corrects order
 				break;
 		}
 	} while (x != 'E' && !(x == 'Y' || x == 'N'));
@@ -96,7 +104,7 @@ void getOrder(vector<string> & order)
 	
 }
 
-void correctOrder(vector<string> & order)
+void correctOrder(vector<string> & order, Link orderL)
 {
 	string input = "";
 	vector<string>delItem;
@@ -109,8 +117,12 @@ void correctOrder(vector<string> & order)
 		{
 			delItem.push_back(input);
 		}
+		
+
 	}
-	for (int i = 0; i < delItem.size(); i++)
+	orderL.updateOrderList(order);
+	orderL.displayList();
+	/*for (int i = 0; i < delItem.size(); i++)
 	{
 		for (int j = 0; j < order.size(); j++)
 		{
@@ -120,11 +132,12 @@ void correctOrder(vector<string> & order)
 			}
 		}
 	}
+	order.shrink_to_fit();
 	for (int i = 0; i < order.size(); i++)
 		cout << order[i] << endl;
-	order.shrink_to_fit();
+	
 	cout << order.size() << endl;
-	cout << order.capacity() << endl;
+	cout << order.capacity() << endl;*/
 
 	cout << "What items would you like to add\nPRESS E TO EXIT";
 }
