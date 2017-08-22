@@ -9,7 +9,7 @@ using namespace std;
 
 string prompter(string, bool*);
 void getOrder(vector<string> &);
-void correctOrder(vector<string> &, Link);
+void correctOrder (Link);
 
 int main() {
 
@@ -81,7 +81,7 @@ void getOrder(vector<string> & order)
 		//cout << c << endl;
 		if (c != "E")
 			orderL.insert_back(c);
-			order.push_back(c);
+			//order.push_back(c);
 	} 
 	cout << "Here is what you selected" << endl;
 	orderL.displayList();
@@ -96,7 +96,7 @@ void getOrder(vector<string> & order)
 			case 'Y':				//will make linked list to sa
 				break;
 			case 'N':
-				correctOrder(order, orderL);	//go to function that corrects order
+				correctOrder(orderL);	//go to function that corrects order
 				break;
 		}
 	} while (x != 'E' && !(x == 'Y' || x == 'N'));
@@ -104,7 +104,7 @@ void getOrder(vector<string> & order)
 	
 }
 
-void correctOrder(vector<string> & order, Link orderL)
+void correctOrder(Link orderL)
 {
 	string input = "";
 	vector<string>delItem;
