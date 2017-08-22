@@ -120,7 +120,7 @@ void correctOrder(vector<string> & order, Link orderL)
 		
 
 	}
-	orderL.updateOrderList(order);
+	orderL.updateOrderList(delItem);
 	orderL.displayList();
 	/*for (int i = 0; i < delItem.size(); i++)
 	{
